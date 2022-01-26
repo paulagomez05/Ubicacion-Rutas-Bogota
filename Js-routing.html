@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <script src="js/map.js"></script>
+  <title>Ubicación de rutas Bogotá</title>
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.22/esri/themes/light/main.css" />
+  <script src="https://js.arcgis.com/4.22/"></script>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/widgets/Directions",
+      "esri/config"
+    ], function (Map, MapView, Directions, esriConfig) {
+      // An authorization string used to access the basemap, geocoding and routing services
+      esriConfig.apiKey = "AAPKe7259512bb5c4d73adad66992ec1b38eYFod1NNVS4uAYdf1dSTL6xwHlnEjSQZVtRUjUo6BEEdA-XKSDFMELq-IqMZvrjt_";
+
+      //Tipo de mapa
+      const map = new Map({
+        basemap: "arcgis-streets-night"
+      });
+
+      //Ubicación del mapa
+      const view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [-74.045130, 4.610868], //Longitude, latitude
+        zoom: 11
+      });
+
+      let directionsWidget = new Directions({
+        view: view
+
+      });
+
+      
+    // Add the Directions widget to the top right corner of the view
+    view.ui.add(directionsWidget, {
+      position: "top-left"
+    });
+    });
+
+
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+
+</html>
